@@ -4,8 +4,8 @@
 
 # Site
 title: Linda
-subtitle: ''
-description: ''
+subtitle: 'JUST DO IT'
+description: 'fighting for the life what you want💪'
 keywords:
 author: Linda
 language: zh-CN
@@ -102,5 +102,13 @@ deploy:
   type: git
   repository: git@47.106.185.252:/home/git/blog.git #Git仓库地址，:符号后为Git仓库服务器路径
   branch: master #分支，由于我们只用Git进行发布，master即可
+
+# search配置
+search:
+   path: search.xml
+   field: post
+   format: html
+   limit: 10000
+
 
 

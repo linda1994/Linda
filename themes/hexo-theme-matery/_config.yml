@@ -36,7 +36,7 @@ music:
   title: 听听音乐
   fixed: false # 开启吸底模式
   autoplay: false # 是否自动播放
-  theme: '#42b983'
+  theme: '#FF70A2'
   loop: 'all' # 音频循环播放, 可选值: 'all', 'one', 'none'
   order: 'list' # 音频循环顺序, 可选值: 'list', 'random'
   preload: 'auto' # 预加载，可选值: 'none', 'metadata', 'auto'
@@ -55,7 +55,7 @@ video:
   thumbnails:
   height: # 如：400
   autoplay: false # 是否自动播放
-  theme: '#42b983'
+  theme: '#FF70A2'
   loop: false # 是否循环播放
   preload: 'auto' # 预加载，可选值: 'none', 'metadata', 'auto'
   volume: 0.7
@@ -86,6 +86,7 @@ socialLink:
   qq: 397080298
   github:
   email: 397080298@qq.com
+  wechat: Linda--DD
 
 # Whether to activate the Post TOC, and Configure which title types are supported by TOC support.
 # You can add `toc: false` to the Front-matter of a post to turn off the TOC.
@@ -103,7 +104,7 @@ code:
 # 是否激活文章末尾的打赏功能，默认激活（你替换为的你自己的微信、支付宝二维码图片、或者使用网络图片也可以）.
 reward:
   enable: true
-  title: 你的赏识是我前进的动力
+  title: 你的赏识是我前进的动力哈
   wechat: /medias/reward/wechat.png
   alipay: /medias/reward/alipay.jpg
 
@@ -111,8 +112,8 @@ reward:
 # minCharNumber: Approve copyright information by copying at least how many characters.
 # 是否激活复制文章时追加博客和作者的版权信息.
 copyright:
-  enable: false
-  minCharNumber: 120 # 至少复制多少个字符就追加版权信息.
+  enable: true
+  minCharNumber: 80 # 至少复制多少个字符就追加版权信息.
   description: 本文章著作权归作者所有，任何形式的转载都请注明出处。
 
 # Whether to activate the mathjax, this is a global configuration, but the post still does not open the mathjax rendering.
@@ -130,7 +131,7 @@ mathjax:
 # 文章字数统计、阅读时长、总字数统计
 # 激活前请确认你已经安装了 hexo-wordcount 插件，安装命令: `npm i --save hexo-wordcount`
 wordCount:
-  enable: false
+  enable: true
   postWordCount: true
   min2read: true
   totalCount: true
@@ -144,8 +145,8 @@ clicklove:
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
 profile:
   avatar: /medias/avatar.jpg
-  career: 前端工程师
-  introduction: 可萌可亲可爱😊
+  career: 前端程序媛
+  introduction: 可萌可亲可逗比🧐
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
 # 在“关于”页面配置"我的项目"信息，如果你不需要这些信息则可以将其设置为不激活或者将其删除.
@@ -174,24 +175,24 @@ myProjects:
 mySkills:
   enable: true
   data:
+    Sass:
+      background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
+      percent: 85%
     JavaScript:
       background: 'linear-gradient(to right, #FF0066 0%, #FF00CC 100%)'
-      percent: 85%
+      percent: 80%
     Vue:
       background: 'linear-gradient(to right, #9900FF 0%, #CC66FF 100%)'
       percent: 80%
     Angular:
       background: 'linear-gradient(to right, #2196F3 0%, #42A5F5 100%)'
       percent: 80%
-    Sass:
-      background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
-      percent: 70%
     Jenkins:
-      background: 'linear-gradient(to right, #4CAF50 0%, #81C784 100%)'
-      percent: 90%
+      background: 'linear-gradient(to right, #FF70A2 0%, #81C784 100%)'
+      percent: 80%
     Nginx:
       background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
-      percent: 75%
+      percent: 85%
 
 # config gallery of my photos in about page.
 # If you don't want to display this `Gallery` content, you can deactivate or delete this configuration.
@@ -210,13 +211,13 @@ postCalendar: true
 # the Gitalk config，default disabled
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
-  enable: false
-  owner:
-  repo:
+  enable: true
+  owner: linda1994
+  repo: blog-comment
   oauth:
-    clientId:
-    clientSecret:
-  admin:
+    clientId: a0c47d7224dd637df377
+    clientSecret: 802964c39280cbbf55bc3b7d07de5e0d84b817f7
+  admin: linda1994
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
@@ -342,3 +343,6 @@ featureImages:
 - /medias/featureimages/21.jpg
 - /medias/featureimages/22.jpg
 - /medias/featureimages/23.jpg
+# Local search
+local_search:
+  enable: true

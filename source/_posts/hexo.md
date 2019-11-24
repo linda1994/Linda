@@ -1,0 +1,159 @@
+---
+title: Hexo个人博客的搭建（阿里云服务器）
+date: 2019-11-23 22:12:08
+tags:
+    - hexo
+    - nginx
+categories: 前端
+indexing: false
+---
+> 利用这几天的海绵式挤时间，终于把个人博客搭起来啦～棒棒哒😘此处有👏嘻嘻^_^
+> 掌柜～来篇教程！
+> 好嘞！客官！搭建流程来啦！～
+***
+### 硬件
+ * 电脑一台
+ * 域名一个（可在阿里云、腾讯云购买，没广告费，不嗨森😫）
+ * 服务器一台（如不用服务器的话，可用GitHub挂载哈，用GitHub的话就不必看这篇文章啦）
+***
+### 所需环境
+ * 客户端
+  * Git
+  * Node
+  * hexo-cli
+ * 服务器
+  * Nginx
+  * Git
+***
+### 一、客户端Git、Node的安装以及hexo的搭建
+这个步骤小举我在CSDN给泥萌挂了参考链接哦 戳它👉[hexo的搭建](https://blog.csdn.net/u013278374/article/details/103111422)
+完成此步骤的检验标准是，能在本地使用`git --version`打印出版本号以及正确访问hexo的相对应主题页面
+***
+### 二、服务器端Git、Nginx的安装
+用命令`yum install -y nginx git`安装git，安装完后分别输入`git --version`、`nginx -v`，出现相应#版本号即为安装成功。
+***
+### 三、服务器Nginx的配置
+在根目录创建博客站点的文件，并更改文件权限
+```
+mkdir -p /data/www/hexo
+chmod -R 777 /data/www/hexo
+```
+添加 index.html 用于检测配置 Nginx 是否成功
+```
+vim /data/www/hexo/index.html
+```
+添加代码如下
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p>Hello world!</p>
+  </body>
+</html>
+```
+修改nginx.conf配置文件
+```
+vim /etc/nginx/nginx.conf
+```
+在http下添加server模块
+```
+   server {
+        listen       80; //nginx 默认80端口
+        server_name  www.xxx;
+        root         /data/www/hexo;
+    }
+```
+开启nginx服务
+```
+systemctl  start nginx
+```
+浏览器访问域名，查看能否正常访问index.html内容
+若每次更改nginx配置，可输入命令`nginx -s reload`,让配置生效
+⚠️一定要在服务器的安全组规则中添加80端口，否则不会有任何输出
+***
+### 四、服务器Git的配置
+增加git用户，并授予相应权限
+```
+adduser git
+chmod 740 /etc/sudoers
+vim /etc/sudoers
+```
+找到root ALL=(ALL) ALL在下面添加一行
+```
+git ALL=(ALL) ALL
+```
+```
+sudo passwd git
+```
+***
+### 五、Git仓库设置
+
+切换到git用户，然后再服务器上初始化一个git裸库
+```
+su git
+cd ~
+git init --bare blog.git
+```
+接着新建一个post-receive文件
+```
+vim ~/blog.git/hooks/post-receive
+```
+在文件中输入
+```
+#！/bin/sh
+git --work-tree=/data/www/hexo --git-dir=/home/git/blog.git checkout -f
+```
+保存退出后再赋予该文件执行权限
+```
+chmod +x ~/blog.git/hooks/post-receive
+```
+***
+### 六、设置SSH，实现客户端免密登陆Git
+切换为git用户，创建 ~/.ssh 文件夹和 ~/.ssh/authorized_keys 文件，并赋予相应的权限
+```
+su git
+mkdir ~/.ssh
+vim ~/.ssh/authorized_keys
+```
+然后将客户端.ssh文件夹下的id_rsa.pub文件里的内容复制到authorized_keys中，接着赋予相应的权限
+```
+chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+```
+> 查看客户端.ssh文件夹下的id_rsa.pub
+> 打开gitbash，执行以下命令，复制里面内容即可
+>```
+cd ~/.ssh
+ls
+cat id_rsa.pub
+>```
+***
+### 七、hexo文件配置修改
+到此只需要把hexo build后的文件发布到服务器就阔以啦～
+打开hexo的_config.yml文件，拉到最底处，补充deploy的内容
+```
+deploy:
+  type: git
+  repository: git@ip:/home/git/blog.git #Git仓库地址，:符号后为Git仓库服务器路径
+  branch: master #分支，由于我们只用Git进行发布，master即可。
+```
+然后我们在终端执行
+```
+hexo clean
+hexo g
+hexo d
+```
+⚠️ 如遇报错 ERROR Deployer not found: git
+
+```
+npm install hexo-deployer-git -–save
+```
+博客文件就会上传到我们在服务器上的git仓库，然后再部署到我们创建的博客根目录。
+在浏览器中访问服务器地址，就可以看到我们的博客啦～大功告成✌️
+
+
+

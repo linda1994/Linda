@@ -16,6 +16,12 @@
     </a>
 <% } %>
 
+<% if (theme.socialLink.wechat) { %>
+    <a href="#" onclick="return false" class="tooltipped" data-tooltip="<%= theme.socialLink.wechat %>" data-position="top" data-delay="50">
+        <i class="fa fa-wechat"></i>
+    </a>
+<% } %>
+
 <% if (config.feed && config.feed.path == 'atom.xml') { %>
     <a href="<%- url_for('/atom.xml') %>" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
         <i class="fa fa-rss"></i>
