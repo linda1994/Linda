@@ -10,13 +10,8 @@
                         subtitle
                     <% } %>
                     </div>
-
                     <div class="description center-align">
-                    <% if (config.description && config.description.length > 0) { %>
-                        <%= config.description %>
-                    <% } else { %>
-                        This is your root _config.yml 'description' value.
-                    <% } %>
+                        <span id="description"></span>
                     </div>
                 </div>
             </div>
@@ -32,8 +27,22 @@
         <% } %>
     </div>
 </div>
-
+<% if (config.descriptionEN) { %>
+<script src="<%- theme.libs.js.typed %>"></script>
 <script>
-// Dynamically switch banner pictures every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+var options = {
+    strings: [' <%- config.description %>', ' <%- config.descriptionEN %>'],
+    typeSpeed: 120,
+    loop: true,
+    loopCount: Infinity,
+    backSpeed: 20,
+    cursorChar: '💪' //
+};
+var typed = new Typed('#description', options);
 </script>
+<% } %>
+<script>
+    // Dynamically switch banner pictures every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
+

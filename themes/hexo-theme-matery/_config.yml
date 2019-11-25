@@ -315,6 +315,7 @@ libs:
     gitalk: /libs/gitalk/gitalk.min.js
     jqcloud: /libs/jqcloud/jqcloud-1.0.4.min.js
     tocbot: /libs/tocbot/tocbot.min.js
+    typed: /libs/typed/typed.min.js
 
 # The post featured images that needs to be displayed when there is no image.
 # 无文章特色图片时需要显示的文章特色图片.
