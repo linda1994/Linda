@@ -78,7 +78,11 @@
 </style>
 
 <div id="reward">
-    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+    <div id="reward-img">
+        <img src="<%- theme.reward.wechat %>" class="reward-img" alt="微信打赏二维码" width="200">
+        <img src="<%- theme.reward.alipay %>" class="reward-img" alt="支付宝打赏二维码" width="200">
+    </div>
+    <!--<a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>-->
 
     <!-- Modal Structure -->
     <div id="rewardModal" class="modal">
@@ -104,13 +108,13 @@
 </div>
 
 <script>
-    $(function () {
-        $('#reward .reward-link').on('click', function () {
-            $('#rewardModal').openModal();
-        });
-
-        $('#rewardModal .close').on('click', function () {
-            $('#rewardModal').closeModal();
-        });
-    });
+    // $(function () {
+    //     $('#reward .reward-link').on('click', function () {
+    //         $('#rewardModal').openModal();
+    //     });
+    //
+    //     $('#rewardModal .close').on('click', function () {
+    //         $('#rewardModal').closeModal();
+    //     });
+    // });
 </script>

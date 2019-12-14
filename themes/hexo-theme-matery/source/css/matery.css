@@ -26,13 +26,13 @@
         margin: 0 auto;
         max-width: 1250px;
     }
-    .article-row .col{
-        padding: 0;
-        width: 32% !important;
-    }
-    .article-row .col:nth-child(3n + 2){
-        margin: 0 2%;
-    }
+    /*.article-row .col{*/
+        /*padding: 0;*/
+        /*width: 32% !important;*/
+    /*}*/
+    /*.article-row .col:nth-child(3n + 2){*/
+        /*margin: 0 2%;*/
+    /*}*/
 
 }
 
